@@ -62,7 +62,7 @@ class Divide(Operation):
     def __init__(self, numbers: Iterable[int]) -> None:
         self._numbers = SafeNumbers(numbers)
 
-    def perform(self) -> float:
+    def perform(self) -> Union[int, float]:
         _log.info('Performing division operation of %s', ' - '.join(map(str, self._numbers.value())))
         result = float('{:0.3f}'.format(reduce(lambda x, y: x / y, self._numbers.value())))
         _log.info('Result of division equals to %s', result)

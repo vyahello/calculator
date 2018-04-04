@@ -21,7 +21,7 @@ class Calculator(ABC):
         pass
 
     @abstractmethod
-    def divide(self) -> str:
+    def divide(self) -> Union[int, float]:
         pass
 
 
@@ -43,5 +43,5 @@ class BasicCalculator(Calculator):
     def multiply(self) -> Union[int, float]:
         return self._multiply.perform()
 
-    def divide(self)-> float:
+    def divide(self)-> Union[int, float]:
         return self._divide.perform()
