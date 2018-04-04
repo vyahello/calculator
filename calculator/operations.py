@@ -1,6 +1,7 @@
 from abc import ABC, ABCMeta, abstractmethod
 from functools import reduce
 from typing import Union, Iterable
+from calculator.numbers import SafeNumbers
 
 
 class Operation(ABC):
@@ -17,37 +18,37 @@ class Add(Operation):
     """Represent add operation."""
 
     def __init__(self, numbers: Iterable[int]) -> None:
-        self._numbers = numbers
+        self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> Union[int, float]:
-        return reduce(lambda x, y: x + y, self._numbers)
+        return reduce(lambda x, y: x + y, self._numbers.value())
 
 
 class Subtract(Operation):
     """Represent subtract operation."""
 
     def __init__(self, numbers: Iterable[int]) -> None:
-        self._numbers = numbers
+        self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> Union[int, float]:
-        return reduce(lambda x, y: x - y, self._numbers)
+        return reduce(lambda x, y: x - y, self._numbers.value())
 
 
 class Multiply(Operation):
     """Represent multiply operation."""
 
     def __init__(self, numbers: Iterable[int]) -> None:
-        self._numbers = numbers
+        self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> Union[int, float]:
-        return reduce(lambda x, y: x * y, self._numbers)
+        return reduce(lambda x, y: x * y, self._numbers.value())
 
 
 class Divide(Operation):
     """Represent multiply operation."""
 
     def __init__(self, numbers: Iterable[int]) -> None:
-        self._numbers = numbers
+        self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> float:
-        return float('{:0.3f}'.format(reduce(lambda x, y: x / y, self._numbers)))
+        return float('{:0.3f}'.format(reduce(lambda x, y: x / y, self._numbers.value())))
