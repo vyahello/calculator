@@ -1,25 +1,6 @@
 import argparse
-from calculator.calculators import BasicCalculator
-from calculator.operations import Operation
 
-
-class _Calculation(Operation):
-    """Represent object that performs calculation."""
-
-    def __init__(self, parser) -> None:
-        self._parser = parser
-        self._calc = lambda parse_args: BasicCalculator(parse_args)
-
-    def perform(self) -> None:
-        if self._parser.add:
-            self._calc(self._parser.add).add()
-        elif self._parser.subtract:
-            self._calc(self._parser.subtract).subtract()
-        elif self._parser.multiply:
-            self._calc(self._parser.multiply).multiply()
-        elif self._parser.divide:
-            self._calc(self._parser.divide).divide()
-
+from calculator.calculations import BasicCalculation
 
 if __name__ == '__main__':
     _parser = argparse.ArgumentParser(
@@ -37,4 +18,4 @@ if __name__ == '__main__':
                                type=int)
     args = _parser.parse_args()
 
-    _Calculation(args).perform()
+    BasicCalculation(args).start()
