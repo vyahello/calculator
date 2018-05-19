@@ -17,7 +17,7 @@ class Operation(ABC):
 class Add(Operation):
     """Represent add operation."""
 
-    def __init__(self, numbers: Iterable[int]) -> None:
+    def __init__(self, numbers: Iterable[float]) -> None:
         self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> float:
@@ -27,7 +27,7 @@ class Add(Operation):
 class Subtract(Operation):
     """Represent subtract operation."""
 
-    def __init__(self, numbers: Iterable[int]) -> None:
+    def __init__(self, numbers: Iterable[float]) -> None:
         self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> float:
@@ -37,7 +37,7 @@ class Subtract(Operation):
 class Multiply(Operation):
     """Represent multiply operation."""
 
-    def __init__(self, numbers: Iterable[int]) -> None:
+    def __init__(self, numbers: Iterable[float]) -> None:
         self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> float:
@@ -47,7 +47,7 @@ class Multiply(Operation):
 class Divide(Operation):
     """Represent multiply operation."""
 
-    def __init__(self, numbers: Iterable[int]) -> None:
+    def __init__(self, numbers: Iterable[float]) -> None:
         self._numbers = SafeNumbers(numbers)
 
     def perform(self) -> float:

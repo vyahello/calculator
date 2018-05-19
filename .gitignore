@@ -1,6 +1,7 @@
 # Pycharm trash
 .idea
 __pycache__/
+.pytest_cache/
 
 # virtualenv
 .venv

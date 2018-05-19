@@ -8,7 +8,7 @@ from calculator.numbers import SafeNumbers, NumbersError
     ((1, 2, 3, 4), (1, 2, 3, 4))
 ])
 def test_safe_numbers(numbers, result):
-    assert SafeNumbers(numbers).value() == result
+    assert SafeNumbers(tuple(map(float, numbers))).value() == result
 
 
 @pytest.mark.parametrize("numbers, result", [

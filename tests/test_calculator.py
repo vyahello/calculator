@@ -8,7 +8,7 @@ from calculator.calculators import BasicCalculator
     ((1, 2, 3, 4), 10)
 ])
 def test_add(numbers, result):
-    assert BasicCalculator(numbers).add() == result
+    assert BasicCalculator(tuple(map(float, numbers))).add() == result
 
 
 @pytest.mark.parametrize("numbers, result", [
@@ -17,7 +17,7 @@ def test_add(numbers, result):
     ((1, 2, 3, 4), -8)
 ])
 def test_subtract(numbers, result):
-    assert BasicCalculator(numbers).subtract() == result
+    assert BasicCalculator(tuple(map(float, numbers))).subtract() == result
 
 
 @pytest.mark.parametrize("numbers, result", [
@@ -26,7 +26,7 @@ def test_subtract(numbers, result):
     ((1, 2, 3, 4), 24)
 ])
 def test_multiply(numbers, result):
-    assert BasicCalculator(numbers).multiply() == result
+    assert BasicCalculator(tuple(map(float, numbers))).multiply() == result
 
 
 @pytest.mark.parametrize("numbers, result", [
@@ -35,4 +35,4 @@ def test_multiply(numbers, result):
     ((1, 2, 3, 4), 0.042)
 ])
 def test_divide(numbers, result):
-    assert BasicCalculator(numbers).divide() == result
+    assert BasicCalculator(tuple(map(float, numbers))).divide() == result

@@ -32,7 +32,7 @@ class Calculator(ABC):
 class BasicCalculator(Calculator):
     """Represent basic calculator object."""
 
-    def __init__(self, numbers: Iterable[int]) -> None:
+    def __init__(self, numbers: Iterable[float]) -> None:
         self._add = ToFloat(Add(numbers))
         self._subtract = ToFloat(Subtract(numbers))
         self._multiply = ToFloat(Multiply(numbers))
