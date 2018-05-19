@@ -7,10 +7,10 @@ def logger() -> logging.Logger:
 
     log = logging.getLogger()
     handler = logging.StreamHandler()
-    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    formatter = logging.Formatter('%(asctime)s %(message)s')
     handler.setFormatter(formatter)
     log.addHandler(handler)
-    log.setLevel(logging.DEBUG)
+    log.setLevel(logging.INFO)
     return log
 
 
@@ -19,9 +19,9 @@ def obj_log(log: logging.Logger) -> Callable[..., Any]:
 
     def decorator(original: Callable[..., Any]) -> Callable[..., Any]:
         def wrapper(*args: Tuple[Any, Any], **kwargs: Dict[Any, Any]) -> Callable[..., Any]:
-            cls_name = args[0].__class__.__name__
-            log.info('Performing %s operation', cls_name)
+            log.info('Performing %s operation', original.__name__)
             result = original(*args, **kwargs)
+            log.info('Result equals to %s', result)
             return result
         return wrapper
     return decorator

@@ -1,6 +1,10 @@
 from abc import ABC, ABCMeta, abstractmethod
 from typing import Union, Iterable
+from calculator.converters import ToFloat
 from calculator.operations import Add, Subtract, Multiply, Divide
+from logger.logger import logger, obj_log
+
+_log = logger()
 
 
 class Calculator(ABC):
@@ -29,19 +33,23 @@ class BasicCalculator(Calculator):
     """Represent basic calculator object."""
 
     def __init__(self, numbers: Iterable[int]) -> None:
-        self._add = Add(numbers)
-        self._subtract = Subtract(numbers)
-        self._multiply = Multiply(numbers)
-        self._divide = Divide(numbers)
+        self._add = ToFloat(Add(numbers))
+        self._subtract = ToFloat(Subtract(numbers))
+        self._multiply = ToFloat(Multiply(numbers))
+        self._divide = ToFloat(Divide(numbers))
 
-    def add(self) -> Union[int, float]:
-        return self._add.perform()
+    @obj_log(_log)
+    def add(self) -> float:
+        return self._add.prepare()
 
-    def subtract(self) -> Union[int, float]:
-        return self._subtract.perform()
+    @obj_log(_log)
+    def subtract(self) -> float:
+        return self._subtract.prepare()
 
-    def multiply(self) -> Union[int, float]:
-        return self._multiply.perform()
+    @obj_log(_log)
+    def multiply(self) -> float:
+        return self._multiply.prepare()
 
-    def divide(self)-> Union[int, float]:
-        return self._divide.perform()
+    @obj_log(_log)
+    def divide(self)-> float:
+        return self._divide.prepare()

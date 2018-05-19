@@ -20,11 +20,11 @@ class NumbersError(Exception):
 class SafeNumbers(Numbers):
     """Represent safe value of given numbers."""
 
-    def __init__(self, numbers: Iterable[int]) -> None:
+    def __init__(self, numbers: Iterable[float]) -> None:
         self._numbers = numbers
 
-    def value(self) -> Iterable[int]:
+    def value(self) -> Iterable[float]:
         for num in self._numbers:
-            if num.__class__ != int:
+            if num.__class__ != float:
                 raise NumbersError('{} type is not supported'.format(num.__class__))
         return self._numbers

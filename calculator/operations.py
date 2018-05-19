@@ -1,10 +1,7 @@
 from abc import ABC, ABCMeta, abstractmethod
 from functools import reduce
-from typing import Union, Iterable
+from typing import Iterable
 from calculator.numbers import SafeNumbers
-from logger.logger import logger, obj_log
-
-_log = logger()
 
 
 class Operation(ABC):
@@ -13,7 +10,7 @@ class Operation(ABC):
     __metaclass__ = ABCMeta
 
     @abstractmethod
-    def perform(self) -> Union[int, float]:
+    def perform(self) -> float:
         pass
 
 
@@ -23,13 +20,8 @@ class Add(Operation):
     def __init__(self, numbers: Iterable[int]) -> None:
         self._numbers = SafeNumbers(numbers)
 
-    @obj_log(_log)
-    def perform(self) -> Union[int, float]:
-        operation = ' + '.join(map(str, self._numbers.value()))
-        _log.info('Calculating %s', operation)
-        result = reduce(lambda x, y: x + y, self._numbers.value())
-        _log.info('Result of %s equals to %s', operation, result)
-        return result
+    def perform(self) -> float:
+        return reduce(lambda x, y: x + y, self._numbers.value())
 
 
 class Subtract(Operation):
@@ -38,13 +30,8 @@ class Subtract(Operation):
     def __init__(self, numbers: Iterable[int]) -> None:
         self._numbers = SafeNumbers(numbers)
 
-    @obj_log(_log)
-    def perform(self) -> Union[int, float]:
-        operation = ' - '.join(map(str, self._numbers.value()))
-        _log.info('Calculating %s', operation)
-        result = reduce(lambda x, y: x - y, self._numbers.value())
-        _log.info('Result of %s equals to %s', operation, result)
-        return result
+    def perform(self) -> float:
+        return reduce(lambda x, y: x - y, self._numbers.value())
 
 
 class Multiply(Operation):
@@ -53,13 +40,8 @@ class Multiply(Operation):
     def __init__(self, numbers: Iterable[int]) -> None:
         self._numbers = SafeNumbers(numbers)
 
-    @obj_log(_log)
-    def perform(self) -> Union[int, float]:
-        operation = ' * '.join(map(str, self._numbers.value()))
-        _log.info('Calculating %s', operation)
-        result = reduce(lambda x, y: x * y, self._numbers.value())
-        _log.info('Result of %s equals to %s', operation, result)
-        return result
+    def perform(self) -> float:
+        return reduce(lambda x, y: x * y, self._numbers.value())
 
 
 class Divide(Operation):
@@ -68,10 +50,5 @@ class Divide(Operation):
     def __init__(self, numbers: Iterable[int]) -> None:
         self._numbers = SafeNumbers(numbers)
 
-    @obj_log(_log)
-    def perform(self) -> Union[int, float]:
-        operation = ' / '.join(map(str, self._numbers.value()))
-        _log.info('Calculating %s', operation)
-        result = float('{:0.3f}'.format(reduce(lambda x, y: x / y, self._numbers.value())))
-        _log.info('Result of %s equals to %s', operation, result)
-        return result
+    def perform(self) -> float:
+        return reduce(lambda x, y: x / y, self._numbers.value())
