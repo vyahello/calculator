@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from argparse import Namespace
 from typing import Callable, List
-from calculator.calculators import BasicCalculator
+from calculator.calculators import BasicCalculator, Calculator
 
 
 class Calculation(ABC):
@@ -17,7 +17,7 @@ class BasicCalculation(Calculation):
 
     def __init__(self, operation: Namespace) -> None:
         self._operation = operation
-        self._calculate: Callable[[List[float]], float] = lambda operations: BasicCalculator(operations)
+        self._calculate: Callable[[List[float]], Calculator] = lambda operations: BasicCalculator(operations)
 
     def start(self) -> None:
         if self._operation.add:

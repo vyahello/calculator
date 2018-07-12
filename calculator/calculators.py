@@ -1,12 +1,14 @@
 import logging
 from abc import ABC, ABCMeta, abstractmethod
-from typing import Union, Iterable
+from typing import Iterable
 from calculator.converters import ToFloat, Converter
 from calculator.operations import Add, Subtract, Multiply, Divide
 from logger.logger import logger, obj_log
+from typing import TypeVar
 
 _log: logging.Logger = logger()
 
+CalcType: type = TypeVar('CalcType', int, float)
 
 
 class Calculator(ABC):
@@ -15,19 +17,19 @@ class Calculator(ABC):
     __metaclass__: type = ABCMeta
 
     @abstractmethod
-    def add(self) -> Union[int, float]:
+    def add(self) -> CalcType:
         pass
 
     @abstractmethod
-    def subtract(self) -> Union[int, float]:
+    def subtract(self) -> CalcType:
         pass
 
     @abstractmethod
-    def multiply(self) -> Union[int, float]:
+    def multiply(self) -> CalcType:
         pass
 
     @abstractmethod
-    def divide(self) -> Union[int, float]:
+    def divide(self) -> CalcType:
         pass
 
 
