@@ -8,6 +8,7 @@ from logger.logger import logger, obj_log
 _log: logging.Logger = logger()
 
 
+
 class Calculator(ABC):
     """Represent abstraction for specific calculator object."""
 
@@ -41,16 +42,16 @@ class BasicCalculator(Calculator):
 
     @obj_log(_log)
     def add(self) -> float:
-        return self._add.prepare()
+        return self._add.perform()
 
     @obj_log(_log)
     def subtract(self) -> float:
-        return self._subtract.prepare()
+        return self._subtract.perform()
 
     @obj_log(_log)
     def multiply(self) -> float:
-        return self._multiply.prepare()
+        return self._multiply.perform()
 
     @obj_log(_log)
     def divide(self)-> float:
-        return self._divide.prepare()
+        return self._divide.perform()

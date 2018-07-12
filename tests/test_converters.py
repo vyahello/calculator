@@ -9,4 +9,4 @@ from calculator.operations import Add
     ((1.0, 2.0, 3.0, 4.0), 10.0)
 ])
 def test_to_float(numbers, result):
-    assert ToFloat(Add(numbers)).prepare() == result
+    assert ToFloat(Add(numbers)).perform() == result

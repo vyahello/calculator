@@ -8,7 +8,7 @@ class Converter(ABC):
     __metaclass__: type = ABCMeta
 
     @abstractmethod
-    def prepare(self) -> float:
+    def perform(self) -> float:
         pass
 
 
@@ -18,5 +18,5 @@ class ToFloat(Converter):
     def __init__(self, operation: Operation) -> None:
         self._operation = operation
 
-    def prepare(self) -> float:
+    def perform(self) -> float:
         return float('{:0.3f}'.format(self._operation.perform()))
