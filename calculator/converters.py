@@ -5,7 +5,7 @@ from calculator.operations import Operation
 class Converter(ABC):
     """Represent abstraction for a converter."""
 
-    __metaclass__ = ABCMeta
+    __metaclass__: type = ABCMeta
 
     @abstractmethod
     def prepare(self) -> float:

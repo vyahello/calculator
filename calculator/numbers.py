@@ -5,7 +5,7 @@ from typing import Iterable
 class Numbers(ABC):
     """Represent abstraction for specific numbers."""
 
-    __metaclass__ = ABCMeta
+    __metaclass__: type = ABCMeta
 
     @abstractmethod
     def value(self) -> Iterable[int]:
@@ -25,6 +25,6 @@ class SafeNumbers(Numbers):
 
     def value(self) -> Iterable[float]:
         for num in self._numbers:
-            if num.__class__ != float:
-                raise NumbersError('{} type is not supported'.format(num.__class__))
+            if not isinstance(num, float):
+                raise NumbersError('{} type is not supported'.format(num.__class__.__name__))
         return self._numbers

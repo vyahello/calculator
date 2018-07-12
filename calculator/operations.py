@@ -7,7 +7,7 @@ from calculator.numbers import SafeNumbers
 class Operation(ABC):
     """Represent abstraction for specific operation."""
 
-    __metaclass__ = ABCMeta
+    __metaclass__: type = ABCMeta
 
     @abstractmethod
     def perform(self) -> float:

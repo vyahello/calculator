@@ -1,16 +1,17 @@
+import logging
 from abc import ABC, ABCMeta, abstractmethod
 from typing import Union, Iterable
-from calculator.converters import ToFloat
+from calculator.converters import ToFloat, Converter
 from calculator.operations import Add, Subtract, Multiply, Divide
 from logger.logger import logger, obj_log
 
-_log = logger()
+_log: logging.Logger = logger()
 
 
 class Calculator(ABC):
     """Represent abstraction for specific calculator object."""
 
-    __metaclass__ = ABCMeta
+    __metaclass__: type = ABCMeta
 
     @abstractmethod
     def add(self) -> Union[int, float]:
@@ -33,10 +34,10 @@ class BasicCalculator(Calculator):
     """Represent basic calculator object."""
 
     def __init__(self, numbers: Iterable[float]) -> None:
-        self._add = ToFloat(Add(numbers))
-        self._subtract = ToFloat(Subtract(numbers))
-        self._multiply = ToFloat(Multiply(numbers))
-        self._divide = ToFloat(Divide(numbers))
+        self._add: Converter = ToFloat(Add(numbers))
+        self._subtract: Converter = ToFloat(Subtract(numbers))
+        self._multiply: Converter = ToFloat(Multiply(numbers))
+        self._divide: Converter = ToFloat(Divide(numbers))
 
     @obj_log(_log)
     def add(self) -> float:
